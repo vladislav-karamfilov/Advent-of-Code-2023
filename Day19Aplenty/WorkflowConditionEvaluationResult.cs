@@ -1,0 +1,3 @@
+﻿namespace Day19Aplenty;
+
+public record WorkflowConditionEvaluationResult(MachinePartRatingsRange AcceptedRange, MachinePartRatingsRange RejectedRange);
