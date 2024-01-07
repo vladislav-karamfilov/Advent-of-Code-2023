@@ -131,7 +131,7 @@ internal static class Puzzle2
 
     private static List<HailstoneTrajectory> ReadHailstoneTrajectories()
     {
-        var coordinateRanges = new Range[3];
+        Span<Range> coordinateRanges = stackalloc Range[3];
 
         var result = new List<HailstoneTrajectory>();
         while (true)
