@@ -43,12 +43,12 @@ internal static class Puzzle2
     {
         const int Size = 5;
 
-        var result = new List<string>(capacity: gardenMap.Count * 5);
+        var result = new List<string>(capacity: gardenMap.Count * Size);
         for (var i = 0; i < Size; i++)
         {
             foreach (var line in gardenMap)
             {
-                var sb = new StringBuilder();
+                var sb = new StringBuilder(capacity: line.Length * Size);
                 for (var j = 0; j < Size; j++)
                 {
                     if (i == Size / 2 && j == Size / 2)
