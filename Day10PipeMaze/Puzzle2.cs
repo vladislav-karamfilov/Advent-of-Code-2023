@@ -58,7 +58,7 @@ internal static class Puzzle2
             return false;
         }
 
-        // https://wrfranklin.org/Research/Short_Notes/pnpoly.html
+        // Approach: Point Inclusion in Polygon (https://wrfranklin.org/Research/Short_Notes/pnpoly.html)
         var inside = false;
         for (int i = 0, j = loopCoordinates.Count - 1; i < loopCoordinates.Count; j = i++)
         {

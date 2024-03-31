@@ -44,7 +44,7 @@ internal static class Puzzle1
 
     private static bool IsInsideTrench(LagoonCoordinate coordinate, List<LagoonCoordinate> trenchEdgeCoordinates)
     {
-        // https://wrfranklin.org/Research/Short_Notes/pnpoly.html
+        // Approach: Point Inclusion in Polygon (https://wrfranklin.org/Research/Short_Notes/pnpoly.html)
         var inside = false;
         for (int i = 0, j = trenchEdgeCoordinates.Count - 1; i < trenchEdgeCoordinates.Count; j = i++)
         {
