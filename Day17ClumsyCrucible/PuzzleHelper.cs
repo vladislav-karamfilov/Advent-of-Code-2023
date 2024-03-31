@@ -49,7 +49,6 @@ internal static class PuzzleHelper
         cityBlocksToVisit.Enqueue(downStartingBlock, downStartingBlock.Score);
 
         var visited = new HashSet<(CityBlockLocation, MoveDirection, int)>();
-        var neighborsInQueue = new HashSet<(CityBlockLocation, MoveDirection, int)>();
 
         while (cityBlocksToVisit.Count > 0)
         {
@@ -60,20 +59,21 @@ internal static class PuzzleHelper
                 return currentBlock.AccumulatedHeatLoss;
             }
 
-            visited.Add((currentBlock.Location, currentBlock.MoveDirection, currentBlock.CurrentBlocksInDirection));
+            if (!visited.Add((currentBlock.Location, currentBlock.MoveDirection, currentBlock.CurrentBlocksInDirection)))
+            {
+                continue;
+            }
 
             var neighborBlocks = GetNeighborBlocks(cityMap, currentBlock, destination, minBlocksInDirection, maxBlocksInDirection);
             foreach (var neighborBlock in neighborBlocks)
             {
-                var neighborInfo = (neighborBlock.Location, neighborBlock.MoveDirection, neighborBlock.CurrentBlocksInDirection);
-                if (visited.Contains(neighborInfo) || neighborsInQueue.Contains(neighborInfo))
+                if (visited.Contains((neighborBlock.Location, neighborBlock.MoveDirection, neighborBlock.CurrentBlocksInDirection)))
                 {
                     continue;
                 }
 
                 neighborBlock.Parent = currentBlock;
                 cityBlocksToVisit.Enqueue(neighborBlock, neighborBlock.Score);
-                neighborsInQueue.Add(neighborInfo);
             }
         }
 
